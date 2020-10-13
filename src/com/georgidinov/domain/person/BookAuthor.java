@@ -18,7 +18,7 @@ public class BookAuthor extends Person {
                       LocalDate dateOfBirth, LocalDate dateOfDeath, String nationality) {
         super(firstName, lastName);
         this.dateOfBirth = validateDate(dateOfBirth);
-        this.dateOfDeath = validateDate(dateOfDeath);
+        this.dateOfDeath = dateOfDeath;
         this.nationality = this.validateNationality(nationality);
     }
 

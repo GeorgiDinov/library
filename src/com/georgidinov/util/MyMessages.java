@@ -15,6 +15,8 @@ public final class MyMessages {
     public static final String QUANTITY = "Quantity";
     public static final String PREVIEW_LINK = "Preview Link";
     public static final String DOWNLOAD_LINK = "Download Link";
+    public static final String THE_LINK_TO_READ_IT = "www.theLinkToReadIt.com";
+    public static final String THE_LINK_TO_DOWNLOAD_IT = "www.theLinkToDownloadIt.com";
     public static final String INVALID_PARAMETER = "Invalid Parameter";
 
     private MyMessages() {

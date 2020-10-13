@@ -110,4 +110,13 @@ public abstract class Book {
         result = 31 * result + isbn.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", genre=" + genre +
+                '}';
+    }
 }

@@ -15,7 +15,7 @@ public class EDownloadableBook extends Book implements EReadable, EDownloadable 
     private String linkToPreview;
     private String linkToDownload;
 
-    protected EDownloadableBook(String title, String isbn, Set<BookAuthor> authors,
+    public EDownloadableBook(String title, String isbn, Set<BookAuthor> authors,
                                 String summary, Genre genre, String linkToPreview, String linkToDownload) {
         super(title, isbn, authors, summary, genre);
         this.linkToDownload = this.validateDownloadLink(linkToDownload);

@@ -1,5 +1,6 @@
 package com.georgidinov.repository;
 
+import com.georgidinov.bootstrap.BookLoader;
 import com.georgidinov.domain.book.Book;
 import com.georgidinov.domain.book.EDownloadable;
 import com.georgidinov.domain.book.EReadable;
@@ -15,7 +16,6 @@ import java.util.Set;
 public class BookRepositoryMapImpl {
 
     private Map<Integer, Book> bookMap = new HashMap<>();
-
 
     public void addBook(Book book) {
         this.bookMap.put(book.getId(), book);
@@ -90,12 +90,55 @@ public class BookRepositoryMapImpl {
         return eDownloadableBooks;
     }
 
-    private Set<BookAuthor> getAllAuthors() {
+    public Set<BookAuthor> findAllAuthors() {
         Set<BookAuthor> authors = new HashSet<>();
         for (Book book : this.bookMap.values()) {
             authors.addAll(book.getAuthors());
         }
         return authors;
     }
+
+    public int size() {
+        return this.bookMap.size();
+    }
+
+
+    //for testing purposes
+    public static void main(String[] args) {
+
+        BookRepositoryMapImpl bookRepository = new BookRepositoryMapImpl();
+        BookLoader.load(bookRepository);
+
+        System.out.println("Total Books Available = " + bookRepository.size());
+        Set<Book> allBooks = bookRepository.findAll();
+        System.out.println("All books size = " + allBooks.size());
+        Set<Book> paperBooks = bookRepository.findAllPaperBooks();
+        Set<Book> eReadableBooks = bookRepository.findAllEReadableBooks();
+        Set<Book> eDownloadableBooks = bookRepository.findAllEDownloadableBooks();
+
+        System.out.println("Paper Books Total = " + paperBooks.size());
+        paperBooks.forEach(System.out::println);
+        System.out.println();
+        System.out.println("EReadable Books Total = " + eReadableBooks.size());
+        eReadableBooks.forEach(System.out::println);
+        System.out.println();
+        System.out.println("EDownloadable Books Total = " + eDownloadableBooks.size());
+        eDownloadableBooks.forEach(System.out::println);
+        System.out.println();
+        Set<BookAuthor> allAuthors = bookRepository.findAllAuthors();
+        System.out.println("All authors size = " + allAuthors.size());
+
+        Set<Book> byAuthorFirstName = bookRepository.findAllByAuthorFirstName("John");
+        Set<Book> byAuthorLastName = bookRepository.findAllByAuthorLastName("Doe");
+        System.out.println("All from John ");
+        byAuthorFirstName.forEach(System.out::println);
+        System.out.println("All from Doe");
+        byAuthorLastName.forEach(System.out::println);
+
+        System.out.println("Book by title WTForJ " + bookRepository.findBookByTitle("WTForJ").get());
+        System.out.println("Book with id = 4 "+bookRepository.findBookById(4).get());
+
+    }//end of main method
+
 
 }

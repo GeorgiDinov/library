@@ -1,5 +1,5 @@
 package com.georgidinov.domain.book;
 
 public enum Genre {
-    WESTERN, SCIENCE_FICTION, FANTASY;
+    WESTERN, SCIENCE, INFORMATION_TECHNOLOGY, SCIENCE_FICTION, FANTASY;
 }
