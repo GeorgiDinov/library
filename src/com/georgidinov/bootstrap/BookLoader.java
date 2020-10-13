@@ -62,13 +62,13 @@ public class BookLoader {
         bookList.add(eBook2);
 
         Set<BookAuthor> paperBookAuthors6 = new HashSet<>();
-        paperBookAuthors6.add(new BookAuthor("Iron", "Maiden", LocalDate.of(1956, 12, 19), null, "USA"));
+        paperBookAuthors6.add(new BookAuthor("Iron", "MikeTyson", LocalDate.of(1956, 12, 19), null, "USA"));
         Book eBook3 = new EReadableBook("StuffForJ", "01234567890", paperBookAuthors6, "About Something Strange With Java", SCIENCE, THE_LINK_TO_READ_IT);
         bookList.add(eBook3);
 
         //eDownloadable books
         Set<BookAuthor> paperBookAuthors7 = new HashSet<>();
-        paperBookAuthors7.add(new BookAuthor("Iron", "Maiden", LocalDate.of(1956, 7, 14), null, "USA"));
+        paperBookAuthors7.add(new BookAuthor("Glen", "Morrison", LocalDate.of(1956, 7, 14), null, "USA"));
         Book eDownloadableBook = new EDownloadableBook("WTForJ", "01234567890", paperBookAuthors7, "About Something Strange With Java", SCIENCE, THE_LINK_TO_READ_IT, THE_LINK_TO_DOWNLOAD_IT);
         bookList.add(eDownloadableBook);
 
@@ -82,5 +82,6 @@ public class BookLoader {
         paperBookAuthors9.add(new BookAuthor("First", "Avenger", LocalDate.of(1972, 5, 9), null, "Mars"));
         Book eDownloadableBook2 = new EDownloadableBook("HeavyWTForJ", "01234567890", paperBookAuthors9, "About Something Heavy And Java", SCIENCE_FICTION, THE_LINK_TO_READ_IT, THE_LINK_TO_DOWNLOAD_IT);
         bookList.add(eDownloadableBook2);
-    }
+    }//end of SIB
+
 }
