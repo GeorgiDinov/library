@@ -120,7 +120,6 @@ public class PersonRepositoryMapImpl {
         System.out.println("The number of all readers is " + allReaders.size());
         System.out.println("All readers:");
         allReaders.forEach(System.out::println);
-
-    }
+    }//end of main method
 
 }

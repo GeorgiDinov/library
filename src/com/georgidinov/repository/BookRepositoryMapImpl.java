@@ -4,6 +4,7 @@ import com.georgidinov.bootstrap.BookLoader;
 import com.georgidinov.domain.book.Book;
 import com.georgidinov.domain.book.EDownloadable;
 import com.georgidinov.domain.book.EReadable;
+import com.georgidinov.domain.book.Genre;
 import com.georgidinov.domain.book.PaperBook;
 import com.georgidinov.domain.person.BookAuthor;
 
@@ -12,6 +13,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+
+import static com.georgidinov.domain.book.Genre.SCIENCE;
 
 public class BookRepositoryMapImpl {
 
@@ -57,6 +60,15 @@ public class BookRepositoryMapImpl {
                 books.add(book);
             }
         }
+        return books;
+    }
+
+    public Set<Book> findAllByGenre(Genre genre) {
+        Set<Book> books = new HashSet<>();
+        this.bookMap.values()
+                .stream()
+                .filter(book -> book.getGenre() == genre)
+                .forEach(books::add);
         return books;
     }
 
@@ -136,7 +148,11 @@ public class BookRepositoryMapImpl {
         byAuthorLastName.forEach(System.out::println);
 
         System.out.println("Book by title WTForJ " + bookRepository.findBookByTitle("WTForJ").get());
-        System.out.println("Book with id = 4 "+bookRepository.findBookById(4).get());
+        System.out.println("Book with id = 4 " + bookRepository.findBookById(4).get());
+
+        Set<Book> byGenre = bookRepository.findAllByGenre(SCIENCE);
+        System.out.println("\nAll with genre SCIENCE:");
+        byGenre.forEach(System.out::println);
 
     }//end of main method
 

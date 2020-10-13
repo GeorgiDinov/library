@@ -18,9 +18,12 @@ public class PaperBook extends Book {
         this.quantity = validateQuantity(quantity);
     }
 
-    //getters
     public int getQuantity() {
         return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     //validations
