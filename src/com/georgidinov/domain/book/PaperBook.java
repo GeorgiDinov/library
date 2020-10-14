@@ -22,8 +22,16 @@ public class PaperBook extends Book {
         return this.quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public boolean decrementQuantity() {
+        if (hasQuantityInStock()) {
+            this.quantity--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasQuantityInStock() {
+        return this.quantity > 0;
     }
 
     //validations

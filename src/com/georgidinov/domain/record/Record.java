@@ -59,7 +59,7 @@ public class Record {
         return getDateString(this.dueDate);
     }
 
-    public void postpone(int days) {
+    public void postponeRequest(int days) {
         if (this.postponeIsPossible(days)) {
             this.dueDate = this.dueDate.plusDays(days);
             System.out.println(POSTPONE_REQUEST + SPACE + GRANTED + COMA +

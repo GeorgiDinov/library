@@ -114,8 +114,8 @@ public abstract class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "title='" + title + '\'' +
-                ", summary='" + summary + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", genre=" + genre +
                 '}';
     }

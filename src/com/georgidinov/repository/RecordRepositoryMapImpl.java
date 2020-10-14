@@ -33,5 +33,8 @@ public class RecordRepositoryMapImpl {
         return records;
     }
 
+    public int size() {
+        return recordMap.size();
+    }
 
 }
