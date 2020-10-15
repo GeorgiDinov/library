@@ -5,7 +5,7 @@ import com.georgidinov.domain.book.EDownloadableBook;
 import com.georgidinov.domain.book.EReadableBook;
 import com.georgidinov.domain.book.PaperBook;
 import com.georgidinov.domain.person.BookAuthor;
-import com.georgidinov.repository.BookRepositoryMapImpl;
+import com.georgidinov.repository.BookRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class BookLoader {
 
     private static List<Book> bookList = new ArrayList<>();
 
-    public static void load(BookRepositoryMapImpl bookRepository) {
+    public static void load(BookRepository bookRepository) {
         for (Book book : bookList) {
             bookRepository.addBook(book);
         }

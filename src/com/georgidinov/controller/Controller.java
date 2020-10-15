@@ -1,27 +1,27 @@
 package com.georgidinov.controller;
 
-import com.georgidinov.repository.BookRepositoryMapImpl;
-import com.georgidinov.repository.BorrowRequestRepositoryMapImpl;
-import com.georgidinov.repository.PersonRepositoryMapImpl;
-import com.georgidinov.repository.RecordRepositoryMapImpl;
+import com.georgidinov.repository.BookRepository;
+import com.georgidinov.repository.BorrowRecordRepository;
+import com.georgidinov.repository.BorrowRequestRepository;
+import com.georgidinov.repository.PersonRepository;
 
 
 //test class for the overall logic
 //todo replace persistence layer with service layer if successful
 public class Controller {
 
-    private BookRepositoryMapImpl bookRepository;
-    private PersonRepositoryMapImpl personRepository;
-    private RecordRepositoryMapImpl recordRepository;
-    private BorrowRequestRepositoryMapImpl borrowRequestRepository;
+    private BookRepository bookRepository;
+    private PersonRepository personRepository;
+    private BorrowRecordRepository borrowRecordRepository;
+    private BorrowRequestRepository borrowRequestRepository;
 
-    public Controller(BookRepositoryMapImpl bookRepository,
-                      PersonRepositoryMapImpl personRepository,
-                      RecordRepositoryMapImpl recordRepository,
-                      BorrowRequestRepositoryMapImpl borrowRequestRepository) {
+    public Controller(BookRepository bookRepository,
+                      PersonRepository personRepository,
+                      BorrowRecordRepository borrowRecordRepository,
+                      BorrowRequestRepository borrowRequestRepository) {
         this.bookRepository = bookRepository;
         this.personRepository = personRepository;
-        this.recordRepository = recordRepository;
+        this.borrowRecordRepository = borrowRecordRepository;
         this.borrowRequestRepository = borrowRequestRepository;
     }
 

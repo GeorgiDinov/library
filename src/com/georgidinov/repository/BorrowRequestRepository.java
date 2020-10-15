@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class BorrowRequestRepositoryMapImpl {
+public final class BorrowRequestRepository {
 
     private static Map<Integer, BorrowRequest> borrowRequestMap = new HashMap<>();
 

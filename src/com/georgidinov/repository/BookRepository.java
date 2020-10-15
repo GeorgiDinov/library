@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static com.georgidinov.domain.book.Genre.SCIENCE;
 
-public final class BookRepositoryMapImpl {
+public final class BookRepository {
 
     private Map<Integer, Book> bookMap = new HashMap<>();
 
@@ -60,6 +60,19 @@ public final class BookRepositoryMapImpl {
                 books.add(book);
             }
         }
+        return books;
+    }
+
+    public Set<Book> findAllByAuthorFullName(String firstName, String lastName) {
+        Set<Book> books = new HashSet<>();
+        this.bookMap.values().forEach(book -> {
+            if (book.getAuthors()
+                    .stream()
+                    .anyMatch(bookAuthor -> bookAuthor.getFirstName().equals(firstName) &&
+                            bookAuthor.getLastName().equals(lastName))) {
+                books.add(book);
+            }
+        });
         return books;
     }
 
@@ -114,11 +127,10 @@ public final class BookRepositoryMapImpl {
         return this.bookMap.size();
     }
 
-
     //for testing purposes
     public static void main(String[] args) {
 
-        BookRepositoryMapImpl bookRepository = new BookRepositoryMapImpl();
+        BookRepository bookRepository = new BookRepository();
         BookLoader.load(bookRepository);
 
         System.out.println("Total Books Available = " + bookRepository.size());
@@ -155,6 +167,5 @@ public final class BookRepositoryMapImpl {
         byGenre.forEach(System.out::println);
 
     }//end of main method
-
 
 }

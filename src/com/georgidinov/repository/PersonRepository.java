@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public final class PersonRepositoryMapImpl {
+public final class PersonRepository {
 
     private Map<Integer, Person> personMap = new HashMap<>();
 
@@ -43,53 +43,90 @@ public final class PersonRepositoryMapImpl {
 
     public Set<Person> findAllWithFirstName(String firstName) {
         Set<Person> personSet = new HashSet<>();
-        for (Person person : this.personMap.values()) {
-            if (person.getFirstName().equals(firstName)) {
-                personSet.add(person);
-            }
-        }
+        this.personMap.values()
+                .stream()
+                .filter(person -> person.getFirstName().equals(firstName))
+                .forEach(personSet::add);
         return personSet;
     }
 
     public Set<Person> findAllWithLastName(String lastName) {
         Set<Person> personSet = new HashSet<>();
-        for (Person person : this.personMap.values()) {
-            if (person.getLastName().equals(lastName)) {
-                personSet.add(person);
-            }
-        }
+        this.personMap.values()
+                .stream()
+                .filter(person -> person.getLastName().equals(lastName))
+                .forEach(personSet::add);
         return personSet;
     }
 
     public Set<Person> findAllAuthors() {
         Set<Person> authors = new HashSet<>();
-        for (Person person : this.personMap.values()) {
+        this.personMap.values().forEach(person -> {
             if (person instanceof BookAuthor) {
                 authors.add(person);
             }
-        }
+        });
         return authors;
+    }
+
+    public Set<Person> findAllAuthorsByFirstName(String firstName) {
+        Set<Person> allAuthors = new HashSet<>();
+        this.findAllAuthors().forEach(person -> {
+            if (person.getFirstName().equals(firstName)) {
+                allAuthors.add(person);
+            }
+        });
+        return allAuthors;
+    }
+
+    public Set<Person> findAllAuthorsByLastName(String lastName) {
+        Set<Person> allAuthors = new HashSet<>();
+        this.findAllAuthors().forEach(person -> {
+            if (person.getLastName().equals(lastName)) {
+                allAuthors.add(person);
+            }
+        });
+        return allAuthors;
     }
 
     public Set<Person> findAllReaders() {
         Set<Person> readers = new HashSet<>();
-        for (Person person : this.personMap.values()) {
+        this.personMap.values().forEach(person -> {
             if (person instanceof LibraryReader) {
                 readers.add(person);
             }
-        }
+        });
         return readers;
+    }
+
+    public Set<Person> findAllReadersByFirstName(String firstName) {
+        Set<Person> allReaders = new HashSet<>();
+        this.findAllReaders().forEach(person -> {
+            if (person.getFirstName().equals(firstName)) {
+                allReaders.add(person);
+            }
+        });
+        return allReaders;
+    }
+
+    public Set<Person> findAllReadersByLastName(String lastName) {
+        Set<Person> allReaders = new HashSet<>();
+        this.findAllReaders().forEach(person -> {
+            if (person.getLastName().equals(lastName)) {
+                allReaders.add(person);
+            }
+        });
+        return allReaders;
     }
 
     public int size() {
         return this.personMap.size();
     }
 
-
     //for testing purposes
     public static void main(String[] args) {
 
-        PersonRepositoryMapImpl personRepository = new PersonRepositoryMapImpl();
+        PersonRepository personRepository = new PersonRepository();
         PersonLoader.load(personRepository);
 
         Set<Person> all = personRepository.findAll();
@@ -120,6 +157,7 @@ public final class PersonRepositoryMapImpl {
         System.out.println("The number of all readers is " + allReaders.size());
         System.out.println("All readers:");
         allReaders.forEach(System.out::println);
+
     }//end of main method
 
 }

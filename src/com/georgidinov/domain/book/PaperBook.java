@@ -6,7 +6,7 @@ import java.util.Set;
 
 import static com.georgidinov.util.MyMessages.INVALID_PARAMETER;
 import static com.georgidinov.util.MyMessages.QUANTITY;
-import static com.georgidinov.util.MyMessages.SPACE;
+import static com.georgidinov.util.MyPunctuation.SPACE;
 
 public class PaperBook extends Book {
 
@@ -39,6 +39,6 @@ public class PaperBook extends Book {
         if (quantity >= 0) {
             return quantity;
         }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + QUANTITY);
+        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + QUANTITY + SPACE + quantity);
     }
 }

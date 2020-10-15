@@ -1,13 +1,13 @@
 package com.georgidinov.service;
 
-import com.georgidinov.repository.PersonRepositoryMapImpl;
+import com.georgidinov.repository.PersonRepository;
 
 //todo implement logic
 public class PersonService {
 
-    private PersonRepositoryMapImpl personRepository;
+    private PersonRepository personRepository;
 
-    public PersonService(PersonRepositoryMapImpl personRepository) {
+    public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 

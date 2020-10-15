@@ -1,10 +1,6 @@
 package com.georgidinov.domain.person;
 
-import static com.georgidinov.util.MyMessages.FIRST_NAME;
-import static com.georgidinov.util.MyMessages.INVALID_PARAMETER;
-import static com.georgidinov.util.MyMessages.LAST_NAME;
-import static com.georgidinov.util.MyMessages.SPACE;
-import static com.georgidinov.util.Validator.isValidString;
+import static com.georgidinov.util.Validator.validateStringField;
 
 public abstract class Person {
 
@@ -15,9 +11,9 @@ public abstract class Person {
     private String lastName;
 
     public Person(String firstName, String lastName) {
+        this.firstName = validateStringField(firstName);
+        this.lastName = validateStringField(lastName);
         this.id = ++instanceCounter;
-        this.firstName = this.validateFirstName(firstName);
-        this.lastName = this.validateLastName(lastName);
     }
 
     public int getId() {
@@ -30,20 +26,6 @@ public abstract class Person {
 
     public String getLastName() {
         return lastName;
-    }
-
-    private String validateFirstName(String firstName) {
-        if (isValidString(firstName)) {
-            return firstName;
-        }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + FIRST_NAME);
-    }
-
-    private String validateLastName(String lastName) {
-        if (isValidString(lastName)) {
-            return lastName;
-        }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + LAST_NAME);
     }
 
     //equals and hashCode

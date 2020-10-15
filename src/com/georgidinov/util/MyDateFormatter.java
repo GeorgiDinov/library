@@ -3,6 +3,9 @@ package com.georgidinov.util;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Utility class to output LocalDate objects in String format
+ */
 public final class MyDateFormatter {
 
     private MyDateFormatter() {

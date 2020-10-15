@@ -6,15 +6,22 @@ import com.georgidinov.domain.person.Person;
 import java.time.LocalDate;
 
 import static com.georgidinov.util.MyDateFormatter.getDateString;
-import static com.georgidinov.util.MyMessages.*;
+import static com.georgidinov.util.MyPunctuation.COMA;
+import static com.georgidinov.util.MyPunctuation.SPACE;
 
-public class Record {
+public class BorrowRecord {
 
-    public static final int REGULAR_BORROW_PERIOD_IN_DAYS = 14;
-    public static final int MAX_BORROW_PERIOD_IN_DAYS = 28;
+    private static final String POSTPONE_REQUEST = "Postpone Request";
+    private static final String GRANTED = "Granted";
+    private static final String DENIED = "Denied";
+    public static final String NEW = "New";
+    public static final String DUE_DATE = "Due Date";
+    public static final String IS = "Is";
+    private static final int REGULAR_BORROW_PERIOD_IN_DAYS = 14;
+    private static final int MAX_BORROW_PERIOD_IN_DAYS = 28;
 
     private static int instanceCounter = 0;
-    private int id;
+    private final int id;
 
     private int bookId;
     private int readerId;
@@ -22,13 +29,13 @@ public class Record {
     private LocalDate dueDate;
     private LocalDate maxPostponeDate;
 
-    public Record(Book book, Person person) {
-        this.id = ++instanceCounter;
+    public BorrowRecord(Book book, Person person) {
         this.bookId = book.getId();
         this.readerId = person.getId();
         this.issuedDate = LocalDate.now();
         this.dueDate = issuedDate.plusDays(REGULAR_BORROW_PERIOD_IN_DAYS);
         this.maxPostponeDate = issuedDate.plusDays(MAX_BORROW_PERIOD_IN_DAYS);
+        this.id = ++instanceCounter;
     }
 
     public int getId() {
@@ -81,11 +88,11 @@ public class Record {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Record)) {
+        if (!(object instanceof BorrowRecord)) {
             return false;
         }
-        Record record = (Record) object;
-        return id == record.id;
+        BorrowRecord borrowRecord = (BorrowRecord) object;
+        return id == borrowRecord.id;
     }
 
     @Override

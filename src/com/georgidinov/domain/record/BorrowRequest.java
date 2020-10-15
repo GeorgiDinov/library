@@ -9,12 +9,10 @@ import static com.georgidinov.util.MyDateFormatter.getDateString;
 
 public class BorrowRequest {
 
-
     public static final int ACTIVE_RESERVATION_PERIOD_IN_DAYS = 3;
 
     private static int instanceCounter = 0;
     private int id;
-
 
     private int bookId;
     private int readerId;
@@ -22,11 +20,11 @@ public class BorrowRequest {
     private boolean isActive;
 
     public BorrowRequest(Book book, Person person) {
-        this.id = ++instanceCounter;
         this.bookId = book.getId();
         this.readerId = person.getId();
         this.reservationDueDate = LocalDate.now().plusDays(ACTIVE_RESERVATION_PERIOD_IN_DAYS);
         this.isActive = true;
+        this.id = ++instanceCounter;
     }
 
     public int getId() {
@@ -60,14 +58,14 @@ public class BorrowRequest {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (!(o instanceof BorrowRequest)) {
+        if (!(object instanceof BorrowRequest)) {
             return false;
         }
-        BorrowRequest that = (BorrowRequest) o;
+        BorrowRequest that = (BorrowRequest) object;
         return id == that.id;
     }
 

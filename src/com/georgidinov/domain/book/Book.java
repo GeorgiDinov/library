@@ -4,8 +4,11 @@ import com.georgidinov.domain.person.BookAuthor;
 
 import java.util.Set;
 
-import static com.georgidinov.util.MyMessages.*;
-import static com.georgidinov.util.Validator.isValidString;
+import static com.georgidinov.util.MyMessages.AUTHORS;
+import static com.georgidinov.util.MyMessages.GENRE;
+import static com.georgidinov.util.MyMessages.INVALID_PARAMETER;
+import static com.georgidinov.util.MyPunctuation.SPACE;
+import static com.georgidinov.util.Validator.validateStringField;
 
 public abstract class Book {
 
@@ -20,12 +23,12 @@ public abstract class Book {
 
     protected Book(String title, String isbn, Set<BookAuthor> authors,
                    String summary, Genre genre) {
+        this.title = validateStringField(title);
+        this.isbn = validateStringField(isbn);
+        this.authors = validateAuthors(authors);
+        this.summary = validateStringField(summary);
+        this.genre = validateGenre(genre);
         this.id = ++instanceCounter;
-        this.title = title;
-        this.isbn = isbn;
-        this.authors = authors;
-        this.summary = summary;
-        this.genre = genre;
     }
 
     //getters
@@ -54,20 +57,6 @@ public abstract class Book {
     }
 
     //validations
-    private String validateTitle(String title) {
-        if (isValidString(title)) {
-            return title;
-        }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + TITLE);
-    }
-
-    private String validateIsbn(String isbn) {
-        if (isValidString(isbn)) {
-            return isbn;
-        }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + ISBN);
-    }
-
     private Set<BookAuthor> validateAuthors(Set<BookAuthor> authors) {
         if (authors != null && !authors.isEmpty()) {
             return authors;
@@ -75,12 +64,13 @@ public abstract class Book {
         throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + AUTHORS);
     }
 
-    private String validateSummary(String summary) {
-        if (isValidString(summary)) {
-            return summary;
+    private Genre validateGenre(Genre genre) {
+        if (genre != null) {
+            return genre;
         }
-        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + SUMMARY);
+        throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + GENRE);
     }
+
 
     //equals and hashCode
     @Override

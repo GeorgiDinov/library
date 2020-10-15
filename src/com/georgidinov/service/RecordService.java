@@ -1,14 +1,14 @@
 package com.georgidinov.service;
 
-import com.georgidinov.repository.RecordRepositoryMapImpl;
+import com.georgidinov.repository.BorrowRecordRepository;
 
 //todo implement logic
 public class RecordService {
 
-    private RecordRepositoryMapImpl recordRepository;
+    private BorrowRecordRepository borrowRecordRepository;
 
-    public RecordService(RecordRepositoryMapImpl recordRepository) {
-        this.recordRepository = recordRepository;
+    public RecordService(BorrowRecordRepository borrowRecordRepository) {
+        this.borrowRecordRepository = borrowRecordRepository;
     }
 
 }
