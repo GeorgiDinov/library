@@ -19,12 +19,14 @@ public class BorrowRequest {
     private int bookId;
     private int readerId;
     private LocalDate reservationDueDate;
+    private boolean isActive;
 
     public BorrowRequest(Book book, Person person) {
         this.id = ++instanceCounter;
         this.bookId = book.getId();
         this.readerId = person.getId();
         this.reservationDueDate = LocalDate.now().plusDays(ACTIVE_RESERVATION_PERIOD_IN_DAYS);
+        this.isActive = true;
     }
 
     public int getId() {
@@ -47,12 +49,22 @@ public class BorrowRequest {
         return getDateString(this.reservationDueDate);
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void changeState() {
+        if (this.reservationDueDate.isEqual(LocalDate.now())) {
+            this.isActive = false;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof BorrowRequest)){
+        if (!(o instanceof BorrowRequest)) {
             return false;
         }
         BorrowRequest that = (BorrowRequest) o;

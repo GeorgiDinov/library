@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static com.georgidinov.domain.book.Genre.SCIENCE;
 
-public class BookRepositoryMapImpl {
+public final class BookRepositoryMapImpl {
 
     private Map<Integer, Book> bookMap = new HashMap<>();
 

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class PersonRepositoryMapImpl {
+public final class PersonRepositoryMapImpl {
 
     private Map<Integer, Person> personMap = new HashMap<>();
 

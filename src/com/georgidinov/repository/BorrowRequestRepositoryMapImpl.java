@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class BorrowRequestRepositoryMapImpl {
+public final class BorrowRequestRepositoryMapImpl {
 
     private static Map<Integer, BorrowRequest> borrowRequestMap = new HashMap<>();
 
@@ -27,8 +28,15 @@ public class BorrowRequestRepositoryMapImpl {
         return new HashSet<>(borrowRequestMap.values());
     }
 
+    public Set<BorrowRequest> findAllActive() {
+        return borrowRequestMap.values()
+                .stream()
+                .filter(BorrowRequest::isActive)
+                .collect(Collectors.toSet());
+    }
+
     public List<BorrowRequest> findAllSortedOnDueDateASC() {
-        List<BorrowRequest> borrowRequests = new ArrayList<>(borrowRequestMap.values());
+        List<BorrowRequest> borrowRequests = new ArrayList<>(this.findAllActive());
         borrowRequests.sort(Comparator.comparing(BorrowRequest::getReservationDueDate));
         return borrowRequests;
     }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class RecordRepositoryMapImpl {
+public final class RecordRepositoryMapImpl {
 
     private static Map<Integer, Record> recordMap = new HashMap<>();
 
