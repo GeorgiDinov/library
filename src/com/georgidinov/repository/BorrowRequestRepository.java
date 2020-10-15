@@ -21,7 +21,7 @@ public final class BorrowRequestRepository {
     }
 
     public Optional<BorrowRequest> findById(int id) {
-        return Optional.of(borrowRequestMap.get(id));
+        return Optional.ofNullable(borrowRequestMap.get(id));
     }
 
     public Set<BorrowRequest> findAll() {
@@ -32,6 +32,13 @@ public final class BorrowRequestRepository {
         return borrowRequestMap.values()
                 .stream()
                 .filter(BorrowRequest::isActive)
+                .collect(Collectors.toSet());
+    }
+
+    public Set<BorrowRequest> findAllBorrowed() {
+        return borrowRequestMap.values()
+                .stream()
+                .filter(BorrowRequest::isBorrowed)
                 .collect(Collectors.toSet());
     }
 

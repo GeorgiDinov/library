@@ -21,7 +21,7 @@ public final class BorrowRecordRepository {
     }
 
     public Optional<BorrowRecord> findById(int id) {
-        return Optional.of(recordMap.get(id));
+        return Optional.ofNullable(recordMap.get(id));
     }
 
     public Set<BorrowRecord> findAllByReaderId(int readerId) {

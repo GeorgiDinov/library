@@ -13,8 +13,8 @@ public final class MyDateFormatter {
 
     public static String getDateString(LocalDate date) {
         if (date != null) {
-            return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
+            return DateTimeFormatter.ofPattern("dd.MM.yyyy").format(date);
         }
-        return "yyyy-MM-dd";
+        return "dd.MM.yyyy";
     }
 }

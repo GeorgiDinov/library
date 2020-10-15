@@ -6,6 +6,8 @@ import com.georgidinov.domain.person.Person;
 import java.time.LocalDate;
 
 import static com.georgidinov.util.MyDateFormatter.getDateString;
+import static com.georgidinov.util.MyMessages.INVALID_PARAMETER;
+import static com.georgidinov.util.MyMessages.OBJECT;
 import static com.georgidinov.util.MyPunctuation.COMA;
 import static com.georgidinov.util.MyPunctuation.SPACE;
 
@@ -25,6 +27,7 @@ public class BorrowRecord {
 
     private int bookId;
     private int readerId;
+    private boolean isActive;
     private LocalDate issuedDate;
     private LocalDate dueDate;
     private LocalDate maxPostponeDate;
@@ -66,7 +69,14 @@ public class BorrowRecord {
         return getDateString(this.dueDate);
     }
 
-    public void postponeRequest(int days) {
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void postponeRequest(int days, Person reader) {
+        if (this.readerId != reader.getId()) {
+            throw new IllegalArgumentException(INVALID_PARAMETER + SPACE + OBJECT + SPACE + reader);
+        }
         if (this.postponeIsPossible(days)) {
             this.dueDate = this.dueDate.plusDays(days);
             System.out.println(POSTPONE_REQUEST + SPACE + GRANTED + COMA +
@@ -78,9 +88,7 @@ public class BorrowRecord {
     }
 
     private boolean postponeIsPossible(int days) {
-        return (days > 0) &&
-                (this.dueDate.plusDays(days).isBefore(this.maxPostponeDate) ||
-                        this.dueDate.plusDays(days).isEqual(this.maxPostponeDate));
+        return (days > 0) && !this.dueDate.plusDays(days).isAfter(this.maxPostponeDate);
     }
 
     @Override

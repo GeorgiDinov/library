@@ -24,7 +24,7 @@ public final class PersonRepository {
     }
 
     public Optional<Person> findById(int id) {
-        return Optional.of(this.personMap.get(id));
+        return Optional.ofNullable(this.personMap.get(id));
     }
 
     public Optional<Person> findByFirstName(String firstName) {
