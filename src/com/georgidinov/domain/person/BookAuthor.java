@@ -47,7 +47,9 @@ public class BookAuthor extends Person {
     }
 
     public void setDateOfDeath(LocalDate dateOfDeath) {
-        this.dateOfDeath = dateOfDeath;
+        if (this.dateOfDeath == null) {
+            this.dateOfDeath = dateOfDeath;
+        }
     }
 
     private LocalDate validateDate(LocalDate date) {

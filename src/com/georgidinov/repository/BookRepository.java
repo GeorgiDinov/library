@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.georgidinov.domain.book.Genre.SCIENCE;
+
 public final class BookRepository {
 
     private Map<Integer, Book> bookMap = new HashMap<>();
@@ -120,10 +122,6 @@ public final class BookRepository {
         return eDownloadableBooks;
     }
 
-//    public Set<Book> findAllEDownloadableBooksOnly() {
-//
-//    }
-
     public Set<BookAuthor> findAllAuthors() {
         Set<BookAuthor> authors = new HashSet<>();
         for (Book book : this.bookMap.values()) {
@@ -138,47 +136,44 @@ public final class BookRepository {
 
     //for testing purposes
     public static void main(String[] args) {
-
-
         BookRepository bookRepository = new BookRepository();
         BookLoader.load(bookRepository);
 
         bookRepository.findAllEReadableBooksOnly().forEach(System.out::println);
         bookRepository.findAllEDownloadableBooks().forEach(System.out::println);
 
-//        System.out.println("Total Books Available = " + bookRepository.size());
-//        Set<Book> allBooks = bookRepository.findAll();
-//        System.out.println("All books size = " + allBooks.size());
-//        Set<Book> paperBooks = bookRepository.findAllPaperBooks();
-//        Set<Book> eReadableBooks = bookRepository.findAllEReadableBooks();
-//        Set<Book> eDownloadableBooks = bookRepository.findAllEDownloadableBooks();
-//
-//        System.out.println("Paper Books Total = " + paperBooks.size());
-//        paperBooks.forEach(System.out::println);
-//        System.out.println();
-//        System.out.println("EReadable Books Total = " + eReadableBooks.size());
-//        eReadableBooks.forEach(System.out::println);
-//        System.out.println();
-//        System.out.println("EDownloadable Books Total = " + eDownloadableBooks.size());
-//        eDownloadableBooks.forEach(System.out::println);
-//        System.out.println();
-//        Set<BookAuthor> allAuthors = bookRepository.findAllAuthors();
-//        System.out.println("All authors size = " + allAuthors.size());
-//
-//        Set<Book> byAuthorFirstName = bookRepository.findAllByAuthorFirstName("John");
-//        Set<Book> byAuthorLastName = bookRepository.findAllByAuthorLastName("Doe");
-//        System.out.println("All from John ");
-//        byAuthorFirstName.forEach(System.out::println);
-//        System.out.println("All from Doe");
-//        byAuthorLastName.forEach(System.out::println);
-//
-//        System.out.println("Book by title WTForJ " + bookRepository.findBookByTitle("WTForJ").get());
-//        System.out.println("Book with id = 4 " + bookRepository.findBookById(4).get());
-//
-//        Set<Book> byGenre = bookRepository.findAllByGenre(SCIENCE);
-//        System.out.println("\nAll with genre SCIENCE:");
-//        byGenre.forEach(System.out::println);
+        System.out.println("Total Books Available = " + bookRepository.size());
+        Set<Book> allBooks = bookRepository.findAll();
+        System.out.println("All books size = " + allBooks.size());
+        Set<Book> paperBooks = bookRepository.findAllPaperBooks();
+        Set<Book> eReadableBooks = bookRepository.findAllEReadableBooks();
+        Set<Book> eDownloadableBooks = bookRepository.findAllEDownloadableBooks();
 
+        System.out.println("Paper Books Total = " + paperBooks.size());
+        paperBooks.forEach(System.out::println);
+        System.out.println();
+        System.out.println("EReadable Books Total = " + eReadableBooks.size());
+        eReadableBooks.forEach(System.out::println);
+        System.out.println();
+        System.out.println("EDownloadable Books Total = " + eDownloadableBooks.size());
+        eDownloadableBooks.forEach(System.out::println);
+        System.out.println();
+        Set<BookAuthor> allAuthors = bookRepository.findAllAuthors();
+        System.out.println("All authors size = " + allAuthors.size());
+
+        Set<Book> byAuthorFirstName = bookRepository.findAllByAuthorFirstName("John");
+        Set<Book> byAuthorLastName = bookRepository.findAllByAuthorLastName("Doe");
+        System.out.println("All from John ");
+        byAuthorFirstName.forEach(System.out::println);
+        System.out.println("All from Doe");
+        byAuthorLastName.forEach(System.out::println);
+
+        System.out.println("Book by title WTForJ " + bookRepository.findBookByTitle("WTForJ").get());
+        System.out.println("Book with id = 4 " + bookRepository.findBookById(4).get());
+
+        Set<Book> byGenre = bookRepository.findAllByGenre(SCIENCE);
+        System.out.println("\nAll with genre SCIENCE:");
+        byGenre.forEach(System.out::println);
     }//end of main method
 
 }
